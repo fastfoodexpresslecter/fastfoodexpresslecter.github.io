@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Fast Food Express | Zapopan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fast Food Express, S.A. de C.V. en Zapopan. Cocina rápida de calidad para oficinas, familias y eventos en Jardines de Guadalupe.">
+    <style>
+        :root {
+            --color-primary: #f59e0b;
+            --color-primary-soft: #fde68a;
+            --color-dark: #111827;
+            --color-dark-soft: #1f2933;
+            --color-light: #f9fafb;
+            --color-muted: #6b7280;
+            --radius-large: 26px;
+            --radius-medium: 18px;
+            --radius-small: 12px;
+            --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.23);
+            --shadow-light: 0 10px 30px rgba(15, 23, 42, 0.12);
+            --transition-fast: 0.28s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #fb923c 100%);
+            color: var(--color-dark);
+            scroll-behavior: smooth;
+        }
+
+        .page-shell {
+            max-width: 1320px;
+            margin: 24px auto 40px auto;
+            padding: 18px;
+        }
+
+        .card-shell {
+            background: #fefefe;
+            border-radius: 32px;
+            box-shadow: var(--shadow-soft);
+            padding: 26px 28px 36px 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 6px 18px 6px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-mark {
+            width: 40px;
+            height: 40px;
+            border-radius: 16px;
+            background: radial-gradient(circle at 20% 0%, #fef9c3 0%, #facc15 40%, #f97316 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #111827;
+            font-size: 20px;
+        }
+
+        .brand-text-main {
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 15px;
+        }
+
+        .brand-text-sub {
+            font-size: 11px;
+            color: var(--color-muted);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 14px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-muted);
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: transparent;
+            transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+        }
+
+        nav a:hover {
+            background: #f3f4f6;
+            color: var(--color-dark);
+            transform: translateY(-1px);
+        }
+
+        nav a.active-link {
+            background: var(--color-dark);
+            color: #f9fafb;
+        }
+
+        .nav-cta {
+            margin-left: 6px;
+        }
+
+        .btn-primary {
+            border: none;
+            border-radius: 999px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            background: var(--color-dark);
+            color: #f9fafb;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-light);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+        }
+
+        .btn-primary span {
+            font-size: 18px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 22px 45px rgba(15, 23, 42, 0.35);
+            background: #020617;
+        }
+
+        .btn-ghost {
+            border-radius: 999px;
+            padding: 10px 18px;
+            border: 1px solid #e5e7eb;
+            background: #ffffffd9;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--color-dark);
+            cursor: pointer;
+            transition: background var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+        }
+
+        .btn-ghost:hover {
+            background: #f9fafb;
+            transform: translateY(-1px);
+            border-color: #d1d5db;
+        }
+
+        main {
+            margin-top: 8px;
+        }
+
+        section {
+            padding: 32px 6px;
+        }
+
+        .section-header {
+            max-width: 640px;
+            margin-bottom: 24px;
+        }
+
+        .section-kicker {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-size: 28px;
+            line-height: 1.18;
+            margin-bottom: 10px;
+            color: var(--color-dark);
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--color-muted);
+            line-height: 1.6;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            gap: 26px;
+            align-items: stretch;
+        }
+
+        .hero-main {
+            position: relative;
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            background-image:
+                linear-gradient(120deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.35)),
+                url("https://images.pexels.com/photos/551991/pexels-photo-551991.jpeg?auto=compress&cs=tinysrgb&w=1600");
+            background-size: cover;
+            background-position: center;
+            color: #f9fafb;
+            padding: 26px 26px 20px 26px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .hero-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 22px;
+        }
+
+        .hero-label {
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(249, 250, 251, 0.08);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-label-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 100%;
+            background: #22c55e;
+        }
+
+        .hero-badge-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .hero-badge {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(249, 250, 251, 0.12);
+            font-size: 11px;
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        .hero-title {
+            font-size: 34px;
+            line-height: 1.15;
+            margin-bottom: 10px;
+        }
+
+        .hero-highlight {
+            color: #facc15;
+        }
+
+        .hero-subtitle {
+            font-size: 15px;
+            max-width: 440px;
+            color: #e5e7eb;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .hero-metrics {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #e5e7eb;
+        }
+
+        .hero-metric-pill {
+            padding: 7px 11px;
+            border-radius: 999px;
+            border: 1px solid rgba(249, 250, 251, 0.12);
+            background: rgba(15, 23, 42, 0.65);
+        }
+
+        .hero-secondary {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .hero-card {
+            background: #f9fafb;
+            border-radius: var(--radius-large);
+            padding: 18px 18px 16px 18px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .hero-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .hero-card-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .hero-card-chip {
+            font-size: 11px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .hero-card-text {
+            font-size: 13px;
+            color: var(--color-muted);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .hero-devices {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .device-card {
+            width: 120px;
+            height: 210px;
+            border-radius: 32px;
+            background: radial-gradient(circle at 20% 0%, #fef3c7, #fbbf24, #f97316);
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 10px 10px 16px 10px;
+            color: #111827;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .device-card.small {
+            height: 185px;
+            transform: translateY(14px);
+            opacity: 0.95;
+        }
+
+        .device-inner {
+            background: rgba(252, 252, 252, 0.96);
+            border-radius: 22px;
+            padding: 10px 8px;
+            width: 100%;
+        }
+
+        .device-title {
+            font-weight: 700;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .device-tag {
+            font-size: 10px;
+            color: var(--color-muted);
+            margin-bottom: 6px;
+        }
+
+        .device-badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .device-badge {
+            padding: 3px 6px;
+            border-radius: 999px;
+            background: #111827;
+            color: #f9fafb;
+            font-size: 9px;
+        }
+
+        .hero-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 4px;
+        }
+
+        .hero-card-footnote {
+            font-size: 11px;
+            color: var(--color-muted);
+        }
+
+        .hero-card-avatar-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .avatar-circle {
+            width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #f97316, #facc15);
+            border: 2px solid #fefefe;
+            margin-left: -6px;
+        }
+
+        .avatar-start {
+            margin-left: 0;
+        }
+
+        .section-grid-two {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+            gap: 26px;
+            align-items: flex-start;
+        }
+
+        .text-block {
+            font-size: 14px;
+            color: var(--color-muted);
+            line-height: 1.7;
+        }
+
+        .highlight-text {
+            font-weight: 600;
+            color: var(--color-dark);
+        }
+
+        .about-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .tag-pill {
+            font-size: 11px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #f3f4f6;
+            color: var(--color-dark-soft);
+        }
+
+        .about-card {
+            padding: 18px 18px 18px 18px;
+            background: #111827;
+            border-radius: var(--radius-medium);
+            color: #f9fafb;
+            box-shadow: var(--shadow-light);
+        }
+
+        .about-card-title {
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .about-card-text {
+            font-size: 13px;
+            color: #e5e7eb;
+            line-height: 1.7;
+        }
+
+        .about-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .about-metric {
+            min-width: 90px;
+        }
+
+        .about-metric-number {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .about-metric-label {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .service-card {
+            background: #f9fafb;
+            border-radius: var(--radius-medium);
+            padding: 18px 16px 18px 16px;
+            box-shadow: var(--shadow-light);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .service-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fffbeb;
+            font-size: 18px;
+        }
+
+        .service-title {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .service-text {
+            font-size: 13px;
+            color: var(--color-muted);
+            line-height: 1.7;
+        }
+
+        .service-tagline {
+            font-size: 11px;
+            color: var(--color-dark-soft);
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: #eff6ff;
+            align-self: flex-start;
+        }
+
+        .advantage-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 24px;
+        }
+
+        .advantage-list {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 14px;
+        }
+
+        .advantage-item {
+            background: #111827;
+            color: #f9fafb;
+            border-radius: var(--radius-medium);
+            padding: 16px 16px 14px 16px;
+        }
+
+        .advantage-item.light {
+            background: #f9fafb;
+            color: var(--color-dark);
+            box-shadow: var(--shadow-light);
+        }
+
+        .advantage-kicker {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: #facc15;
+            margin-bottom: 6px;
+        }
+
+        .advantage-title {
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .advantage-text {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #e5e7eb;
+        }
+
+        .advantage-text.dark {
+            color: var(--color-muted);
+        }
+
+        .advantage-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .advantage-stat-pill {
+            font-size: 11px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 10px;
+        }
+
+        .process-step {
+            background: #111827;
+            color: #f9fafb;
+            border-radius: var(--radius-medium);
+            padding: 18px 16px 16px 16px;
+            box-shadow: var(--shadow-light);
+            position: relative;
+        }
+
+        .process-number {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            background: #fef3c7;
+            color: #92400e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .process-title {
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .process-text {
+            font-size: 13px;
+            color: #e5e7eb;
+            line-height: 1.7;
+        }
+
+        .process-arrow {
+            position: absolute;
+            right: -10px;
+            top: 40%;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #f59e0b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #111827;
+        }
+
+        .process-step:last-child .process-arrow {
+            display: none;
+        }
+
+        .process-footer-note {
+            margin-top: 14px;
+            font-size: 12px;
+            color: var(--color-muted);
+        }
+
+        .cta-banner {
+            margin-top: 26px;
+            border-radius: var(--radius-large);
+            background: radial-gradient(circle at 0% 0%, #fef3c7, #f97316);
+            padding: 18px 18px 16px 18px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .cta-banner-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .cta-banner-sub {
+            font-size: 13px;
+            color: #7c2d12;
+            max-width: 380px;
+        }
+
+        .cta-banner-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .contact-shell {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        .contact-card {
+            background: #111827;
+            color: #f9fafb;
+            border-radius: var(--radius-large);
+            padding: 18px 18px 20px 18px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .contact-line {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            min-width: 70px;
+        }
+
+        .contact-value a {
+            color: #fde68a;
+            text-decoration: none;
+        }
+
+        .contact-value a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-list {
+            font-size: 12px;
+            color: #e5e7eb;
+            margin-top: 8px;
+            line-height: 1.7;
+        }
+
+        .contact-card-secondary {
+            background: #f9fafb;
+            border-radius: var(--radius-large);
+            padding: 18px 18px 18px 18px;
+            box-shadow: var(--shadow-light);
+            font-size: 13px;
+            color: var(--color-muted);
+            line-height: 1.7;
+        }
+
+        .contact-pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .contact-pill {
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #eff6ff;
+            font-size: 11px;
+            color: #1d4ed8;
+        }
+
+        footer {
+            margin-top: 10px;
+            padding-top: 18px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 11px;
+            color: var(--color-muted);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-links span {
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #f3f4f6;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.68);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-fast);
+            z-index: 40;
+        }
+
+        .modal-backdrop.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            width: 100%;
+            max-width: 520px;
+            background: #f9fafb;
+            border-radius: 26px;
+            box-shadow: 0 28px 65px rgba(15, 23, 42, 0.6);
+            padding: 20px 22px 18px 22px;
+            position: relative;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            margin-bottom: 4px;
+            color: var(--color-dark);
+        }
+
+        .modal-subtitle {
+            font-size: 13px;
+            color: var(--color-muted);
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .modal-extra {
+            font-size: 12px;
+            color: var(--color-dark-soft);
+            background: #fffbeb;
+            border-radius: 16px;
+            padding: 8px 10px;
+            margin-bottom: 12px;
+        }
+
+        .modal-form-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 10px;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 13px;
+        }
+
+        .field-label {
+            font-weight: 600;
+            color: var(--color-dark-soft);
+        }
+
+        .field-input,
+        .field-textarea,
+        .field-select {
+            border-radius: 12px;
+            border: 1px solid #d1d5db;
+            padding: 9px 10px;
+            font-size: 13px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 42px;
+            background: #fefefe;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+        }
+
+        .field-textarea {
+            min-height: 96px;
+        }
+
+        .field-input:focus,
+        .field-textarea:focus,
+        .field-select:focus {
+            outline: none;
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.4);
+            background: #ffffff;
+        }
+
+        .modal-footer {
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .modal-note {
+            font-size: 11px;
+            color: var(--color-muted);
+            max-width: 260px;
+        }
+
+        .modal-close-btn {
+            border-radius: 999px;
+            border: none;
+            padding: 6px 10px;
+            background: transparent;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--color-muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--color-dark-soft);
+        }
+
+        .modal-close-icon {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e5e7eb;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .modal-close-icon:hover {
+            background: #d1d5db;
+        }
+
+        .modal-card.success {
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .modal-icon-success {
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            margin: 2px auto 10px auto;
+            background: #ecfdf3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #16a34a;
+        }
+
+        @media (max-width: 1040px) {
+            .hero {
+                grid-template-columns: minmax(0, 1.1fr);
+            }
+
+            .section-grid-two {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .advantage-layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .contact-shell {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 840px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                flex-wrap: wrap;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .process-steps {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .cta-banner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-shell {
+                margin: 14px auto 26px auto;
+                padding: 10px;
+            }
+
+            .card-shell {
+                padding: 18px 16px 26px 16px;
+            }
+
+            .hero-main {
+                padding: 20px 18px 16px 18px;
+            }
+
+            .hero-title {
+                font-size: 26px;
+            }
+
+            .services-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .device-card {
+                width: 110px;
+                height: 190px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <div class="card-shell">
+            <header>
+                <div class="brand">
+                    <div class="brand-mark">
+                        F
+                    </div>
+                    <div>
+                        <div class="brand-text-main">
+                            Fast Food Express
+                        </div>
+                        <div class="brand-text-sub">
+                            Cocina rápida creada en Zapopan
+                        </div>
+                    </div>
+                </div>
+                <nav>
+                    <a href="#inicio" class="active-link">
+                        Inicio
+                    </a>
+                    <a href="#concepto">
+                        Concepto Express
+                    </a>
+                    <a href="#servicios">
+                        Menú y Servicios
+                    </a>
+                    <a href="#diferencias">
+                        Por qué somos distintos
+                    </a>
+                    <a href="#proceso">
+                        Cómo funciona
+                    </a>
+                    <a href="#contacto">
+                        Contacto
+                    </a>
+                    <div class="nav-cta">
+                        <button class="btn-primary" type="button" data-open-contact>
+                            Escríbenos
+                            <span>➜</span>
+                        </button>
+                    </div>
+                </nav>
+            </header>
+            <main>
+                <section id="inicio">
+                    <div class="hero">
+                        <div class="hero-main">
+                            <div class="hero-top-row">
+                                <div class="hero-label">
+                                    <span class="hero-label-dot"></span>
+                                    Servicio activo hoy en Jardines de Guadalupe
+                                </div>
+                                <div class="hero-badge-group">
+                                    <div class="hero-badge">
+                                        Listo en menos de 10 minutos
+                                    </div>
+                                    <div class="hero-badge">
+                                        Menú caliente para oficinas
+                                    </div>
+                                </div>
+                            </div>
+                            <h1 class="hero-title">
+                                La vida sabe mejor
+                                <span class="hero-highlight">
+                                    en modo Express
+                                </span>
+                            </h1>
+                            <p class="hero-subtitle">
+                                Fast Food Express, S.A. de C.V. transforma la pausa de comida en un momento ágil y delicioso. Desde Zapopan diseñamos experiencias de servicio rápido con estándares de cocina profesional, listas para oficinas, familias y eventos en toda la zona metropolitana de Guadalajara.
+                            </p>
+                            <div class="hero-actions">
+                                <button class="btn-primary" type="button" data-open-contact>
+                                    Solicitar propuesta para mi empresa
+                                    <span>⚡</span>
+                                </button>
+                                <button class="btn-ghost" type="button" onclick="document.getElementById('servicios').scrollIntoView({behavior:'smooth'})">
+                                    Ver menú y servicios
+                                    <span>↓</span>
+                                </button>
+                            </div>
+                            <div class="hero-metrics">
+                                <div class="hero-metric-pill">
+                                    Más de 1800 comidas servidas al mes
+                                </div>
+                                <div class="hero-metric-pill">
+                                    Recetas pensadas para el ritmo tapatío
+                                </div>
+                                <div class="hero-metric-pill">
+                                    Servicio diseñado para horarios de oficina
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-secondary">
+                            <div class="hero-card">
+                                <div class="hero-card-header">
+                                    <div>
+                                        <div class="hero-card-title">
+                                            Controla tu pausa desde la app
+                                        </div>
+                                        <div class="hero-card-text">
+                                            Configura horarios de servicio, menús rotativos y entregas para tu equipo sin llamadas ni filas. Diseñamos un flujo digital que reduce tiempos de espera en comedores corporativos de Zapopan y Guadalajara.
+                                        </div>
+                                    </div>
+                                    <div class="hero-card-chip">
+                                        Hecho para equipos hambrientos
+                                    </div>
+                                </div>
+                                <div class="hero-devices">
+                                    <div class="device-card">
+                                        <div class="device-inner">
+                                            <div class="device-title">
+                                                Pausa inteligente
+                                            </div>
+                                            <div class="device-tag">
+                                                Panel para recursos humanos
+                                            </div>
+                                            <div class="device-badge-row">
+                                                <div class="device-badge">
+                                                    Créditos comida
+                                                </div>
+                                                <div class="device-badge">
+                                                    Reportes diarios
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="device-card small">
+                                        <div class="device-inner">
+                                            <div class="device-title">
+                                                Pedidos personales
+                                            </div>
+                                            <div class="device-tag">
+                                                Empleados y familias
+                                            </div>
+                                            <div class="device-badge-row">
+                                                <div class="device-badge">
+                                                    Pick-up rápido
+                                                </div>
+                                                <div class="device-badge">
+                                                    Entrega interna
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hero-card-footer">
+                                    <div class="hero-card-footnote">
+                                        Menús adaptados por zona, aforo y horario punta.
+                                    </div>
+                                    <div class="hero-card-avatar-group">
+                                        <div class="avatar-circle avatar-start"></div>
+                                        <div class="avatar-circle"></div>
+                                        <div class="avatar-circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hero-card">
+                                <div class="hero-card-header">
+                                    <div>
+                                        <div class="hero-card-title">
+                                            Experiencia creada desde Zapopan
+                                        </div>
+                                    </div>
+                                    <div class="hero-card-chip">
+                                        Hecho en Jardines de Guadalupe
+                                    </div>
+                                </div>
+                                <p class="hero-card-text">
+                                    Cocinamos en Av. Manuel J. Clouthier y distribuimos en rutas optimizadas para llegar caliente a tu mesa. Nuestro equipo de cocina conoce los hábitos de la ciudad y rota platillos según clima, temporada y horarios de tráfico.
+                                </p>
+                                <div class="hero-card-footer">
+                                    <div class="hero-card-footnote">
+                                        Ideal para empresas con varios turnos en la zona metropolitana.
+                                    </div>
+                                    <button class="btn-ghost" type="button" data-open-contact>
+                                        Agendar cata de menú
+                                        <span>🍔</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="concepto">
+                    <div class="section-grid-two">
+                        <div>
+                            <div class="section-header">
+                                <div class="section-kicker">
+                                    Así nace nuestra cocina rápida
+                                </div>
+                                <h2 class="section-title">
+                                    De antojo callejero a flujo perfecto de servicio
+                                </h2>
+                                <p class="section-subtitle">
+                                    Fast Food Express, S.A. de C.V. surge en Zapopan con un reto claro: llevar el sabor y la inmediatez de la comida urbana a un formato ordenado, puntual y repetible. Todo comenzó atendiendo a grupos pequeños en Jardines de Guadalupe y hoy diseñamos operaciones completas para comedores internos, eventos corporativos y entregas programadas en la ciudad.
+                                </p>
+                            </div>
+                            <div class="text-block">
+                                <p>
+                                    Combinamos <span class="highlight-text">recetas inspiradas en la comida rápida mexicana y casual americana</span> con un proceso de producción estandarizado. Cada hamburguesa, bowl o wrap está diseñado para viajar bien, mantenerse caliente y llegar con la misma calidad a la primera y a la última bandeja del servicio.
+                                </p>
+                                <br>
+                                <p>
+                                    Nuestro equipo de cocina trabaja con una carta base que se adapta semanalmente a la demanda de cada empresa. Analizamos pedidos recurrentes, rotación de platillos y horarios de mayor consumo para proponer menús que mantengan el interés del equipo sin saturar la operación.
+                                </p>
+                                <br>
+                                <p>
+                                    Desde Av. Manuel J. Clouthier coordinamos producción, empaque y despacho con tiempos exactos. Así logramos que la experiencia se perciba tan rápida como un autoservicio, pero con la calidez y cercanía de un lugar de barrio.
+                                </p>
+                                <div class="about-badge-row">
+                                    <div class="tag-pill">
+                                        Operación pensada para grandes volúmenes
+                                    </div>
+                                    <div class="tag-pill">
+                                        Recetas diseñadas para transporte corto
+                                    </div>
+                                    <div class="tag-pill">
+                                        Equipo capacitado en servicio corporativo
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="about-card">
+                                <div class="about-card-title">
+                                    Qué significa comer en modo Express
+                                </div>
+                                <div class="about-card-text">
+                                    Para nosotros, Express no es solo servir rápido. Es planear rutas, porciones y empaques para que tus equipos dediquen menos tiempo a filas y más a desconectar de la jornada. Nos aseguramos de que haya opciones equilibradas, indulgentes y especiales para quienes tienen restricciones alimentarias.
+                                </div>
+                                <div class="about-metrics">
+                                    <div class="about-metric">
+                                        <div class="about-metric-number">
+                                            4
+                                        </div>
+                                        <div class="about-metric-label">
+                                            Zonas de reparto diario en Zapopan y Guadalajara.
+                                        </div>
+                                    </div>
+                                    <div class="about-metric">
+                                        <div class="about-metric-number">
+                                            35+
+                                        </div>
+                                        <div class="about-metric-label">
+                                            Recetas adaptadas para bandejas y empaques individuales.
+                                        </div>
+                                    </div>
+                                    <div class="about-metric">
+                                        <div class="about-metric-number">
+                                            90%
+                                        </div>
+                                        <div class="about-metric-label">
+                                            De los clientes mantiene el servicio más de 6 meses.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="servicios">
+                    <div class="section-header">
+                        <div class="section-kicker">
+                            Menú y experiencias de servicio
+                        </div>
+                        <h2 class="section-title">
+                            Lo que podemos cocinar y organizar para ti
+                        </h2>
+                        <p class="section-subtitle">
+                            No solo servimos platillos, diseñamos dinámicas completas para que la comida encaje con la rutina de tu equipo. Cada servicio se adapta al tamaño de tu empresa, a tu espacio disponible y a la cultura que quieres reforzar alrededor de la mesa.
+                        </p>
+                    </div>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                🍔
+                            </div>
+                            <div class="service-title">
+                                Estaciones Express para oficinas
+                            </div>
+                            <div class="service-tagline">
+                                Ideal para empresas con comedor o salas multiuso
+                            </div>
+                            <p class="service-text">
+                                Llevamos módulos de servicio donde armamos hamburguesas, bowls, wraps y guarniciones frente a tu equipo, con opciones preconfiguradas para agilizar la fila. Integramos menús fijos y rotativos que se actualizan según temporada y preferencias de tu personal. El resultado es una experiencia dinámica en la que todos pueden comer rico sin salir del edificio.
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                🥡
+                            </div>
+                            <div class="service-title">
+                                Entrega programada para equipos completos
+                            </div>
+                            <div class="service-tagline">
+                                Rondas calientes directo a salas y estaciones
+                            </div>
+                            <p class="service-text">
+                                Diseñamos itinerarios de entrega por área, piso o equipo, con tiempos predefinidos para que todos reciban su comida casi al mismo tiempo. Cada bandeja se etiqueta con nombre, horario y tipo de platillo para evitar confusiones en equipos grandes. Es ideal para jornadas de capacitación, sesiones de planeación o días clave de producción.
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                🎉
+                            </div>
+                            <div class="service-title">
+                                Catering urbano para eventos internos
+                            </div>
+                            <div class="service-tagline">
+                                Sabores informales con ejecución precisa
+                            </div>
+                            <p class="service-text">
+                                Combinamos estaciones calientes, mesas de autoservicio y snacks individuales para eventos como aniversarios, lanzamientos internos y celebraciones de fin de proyecto. Adaptamos la propuesta según el tipo de evento, ya sea más casual con sliders y papas, o más equilibrado con ensaladas y bowls. Así logramos que el ambiente se sienta relajado sin perder el control logístico de horarios y cantidades.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section id="diferencias">
+                    <div class="advantage-layout">
+                        <div>
+                            <div class="section-header">
+                                <div class="section-kicker">
+                                    Motivos para elegirnos
+                                </div>
+                                <h2 class="section-title">
+                                    Sabores rápidos, operación pensada para empresas reales
+                                </h2>
+                                <p class="section-subtitle">
+                                    Nos diferenciamos porque miramos la comida rápida desde la logística, no solo desde la cocina. Escuchamos cómo funciona tu día a día, medimos tiempos de traslado, revisamos accesos y espacios, y a partir de ahí definimos cómo podemos hacer que la comida encaje con el ritmo real de tu operación.
+                                </p>
+                            </div>
+                            <div class="advantage-list">
+                                <div class="advantage-item">
+                                    <div class="advantage-kicker">
+                                        Ventaja clave 01
+                                    </div>
+                                    <div class="advantage-title">
+                                        Rutas de servicio trazadas para Zapopan y Guadalajara
+                                    </div>
+                                    <p class="advantage-text">
+                                        Estudiamos las vialidades más utilizadas entre Av. Manuel J. Clouthier y las principales zonas corporativas. Ajustamos horarios de salida y ventanas de servicio para evitar los tramos más saturados y así asegurar que los platillos lleguen calientes. Esta planificación fina se nota en la experiencia final de tus equipos, que reciben la comida cuando realmente la necesitan.
+                                    </p>
+                                </div>
+                                <div class="advantage-item light">
+                                    <div class="advantage-kicker">
+                                        Ventaja clave 02
+                                    </div>
+                                    <div class="advantage-title">
+                                        Menús diseñados por comportamiento de consumo
+                                    </div>
+                                    <p class="advantage-text dark">
+                                        Analizamos qué se pide más según día de la semana, clima y tipo de jornada para ajustar porciones y combinaciones. Esto nos permite reducir desperdicio y ofrecer la mezcla correcta entre opciones indulgentes y alternativas más ligeras. Además, mantenemos un catálogo definido de productos aptos para transporte, evitando sorpresas al momento de servir.
+                                    </p>
+                                </div>
+                                <div class="advantage-item">
+                                    <div class="advantage-kicker">
+                                        Ventaja clave 03
+                                    </div>
+                                    <div class="advantage-title">
+                                        Comunicación clara antes, durante y después del servicio
+                                    </div>
+                                    <p class="advantage-text">
+                                        Antes de la primera entrega, acordamos horarios, puntos de acceso y protocolos con tu equipo. Durante el servicio asignamos responsables claramente identificados para resolver ajustes en el momento. Al finalizar enviamos un breve resumen con observaciones y sugerencias de mejora para la siguiente fecha.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="about-card">
+                                <div class="about-card-title">
+                                    Lo que escuchamos de nuestros clientes
+                                </div>
+                                <div class="about-card-text">
+                                    Las empresas que trabajan con nosotros destacan que su gente deja de perder tiempo decidiendo dónde comer o desplazándose a otros puntos. También valoran que el servicio mantiene un estándar, incluso cuando hay cambios de personal o se abren nuevas áreas en la misma sede.
+                                </div>
+                                <div class="advantage-stats">
+                                    <div class="advantage-stat-pill">
+                                        Reducción promedio de 20 minutos en cada pausa de comida.
+                                    </div>
+                                    <div class="advantage-stat-pill">
+                                        Incremento de participación en eventos internos donde servimos.
+                                    </div>
+                                    <div class="advantage-stat-pill">
+                                        Escalabilidad para nuevos pisos o sedes sin rediseñar todo el modelo.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="proceso">
+                    <div class="section-header">
+                        <div class="section-kicker">
+                            Nuestro flujo express de trabajo
+                        </div>
+                        <h2 class="section-title">
+                            Del primer mensaje a la primera bandeja servida
+                        </h2>
+                        <p class="section-subtitle">
+                            Queremos que iniciar con Fast Food Express sea tan sencillo como pedir un menú del día. Por eso definimos un proceso claro de tres etapas que va desde la primera conversación hasta el servicio regular, con ajustes transparentes en cada fase.
+                        </p>
+                    </div>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="process-number">
+                                1
+                            </div>
+                            <div class="process-title">
+                                Exploramos tu ritmo de trabajo
+                            </div>
+                            <p class="process-text">
+                                Recibimos tu mensaje y agendamos una breve sesión para entender cuántas personas comen en cada horario, qué espacios tienen disponible y cuáles son las restricciones de acceso a tus instalaciones. Con esa información preparamos una propuesta inicial de formato de servicio y frecuencia semanal o mensual.
+                            </p>
+                            <div class="process-arrow">
+                                ➜
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="process-number">
+                                2
+                            </div>
+                            <div class="process-title">
+                                Probamos el menú en contexto real
+                            </div>
+                            <p class="process-text">
+                                Coordinamos una degustación en tus instalaciones en la que simulamos el flujo de servicio. Ajustamos tiempos de montaje, números de bandejas y tipos de platillos según la respuesta de tu equipo. Esta etapa nos permite detectar mejoras logísticas antes de iniciar la operación regular.
+                            </p>
+                            <div class="process-arrow">
+                                ➜
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="process-number">
+                                3
+                            </div>
+                            <div class="process-title">
+                                Activamos el servicio Express recurrente
+                            </div>
+                            <p class="process-text">
+                                Una vez aprobada la propuesta, agendamos las fechas de servicio y definimos responsables de ambos lados. Cada día acordado producimos, empaquetamos y transportamos según el plan establecido, enviando un breve reporte de cierre tras cada jornada. Si tu empresa crece o abre nuevas áreas, escalamos el modelo sin frenar la operación.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="process-footer-note">
+                        En todo momento tendrás un canal de comunicación dedicado para ajustar horarios, tamaños de porción o frecuencia de servicio según cambien las necesidades de tu equipo.
+                    </div>
+                    <div class="cta-banner">
+                        <div>
+                            <div class="cta-banner-text">
+                                ¿Listo para probar cómo se siente un servicio realmente Express?
+                            </div>
+                            <div class="cta-banner-sub">
+                                Cuéntanos cuántas personas comen al día en tu empresa y te enviaremos una propuesta adaptada a tu realidad, no un paquete genérico.
+                            </div>
+                        </div>
+                        <div class="cta-banner-actions">
+                            
+                            <button class="btn-ghost" type="button" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+                                Ver datos de contacto
+                                <span>↘</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <section id="contacto">
+                    <div class="section-header">
+                        <div class="section-kicker">
+                            Hablemos de tu siguiente servicio
+                        </div>
+                        <h2 class="section-title">
+                            Escríbenos y diseñemos juntos tu experiencia Express
+                        </h2>
+                        <p class="section-subtitle">
+                            Utiliza el formulario para contarnos qué tipo de servicio estás buscando. Nos enfocamos en empresas, equipos y eventos internos que necesiten comida rápida bien organizada en Zapopan y alrededores.
+                        </p>
+                    </div>
+                    <div class="contact-shell">
+                        <div class="contact-card">
+                            <div class="about-card-title">
+                                Nuestra base de operaciones
+                            </div>
+                            <div class="contact-line">
+                                <div class="contact-label">
+                                    Dirección
+                                </div>
+                                <div class="contact-value">
+                                    Av. Manuel J. Clouthier No. 777 - 25, 45380 Zapopan, Jardines de Guadalupe.
+                                </div>
+                            </div>
+                            <div class="contact-line">
+                                <div class="contact-label">
+                                    Correo
+                                </div>
+                                <div class="contact-value">
+                                    <a href="mailto:info@fastfoodexpress.pro">
+                                        info@fastfoodexpress.pro
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="contact-list">
+                                Trabajamos principalmente con empresas, oficinas y equipos que requieren soluciones recurrentes u ocasionales de comida rápida organizada. Escríbenos si buscas pruebas piloto, servicios para varias sedes o si quieres adaptar el menú a necesidades específicas de tu personal.
+                            </div>
+                            <div class="contact-list">
+                                Responderemos tu mensaje con una propuesta clara de formato, horarios sugeridos y ejemplos de menús Express que ya hemos probado con otros clientes en la zona.
+                            </div>
+                        </div>
+                        <div class="contact-card-secondary">
+                            <div class="about-card-title" style="color:#111827;">
+                                Cuando nos escribas desde el formulario
+                            </div>
+                            <p>
+                                Cuanta más información nos compartas, más precisa será la propuesta que recibirás. Nos ayuda saber cuántas personas comen diariamente, si cuentan con comedor o salas multiuso, y en qué horarios es más importante agilizar el servicio.
+                            </p>
+                            <br>
+                            <p>
+                                También puedes explicarnos si buscas un servicio para un evento puntual o si tu objetivo es construir una rutina de comida rápida bien organizada para tus equipos.
+                            </p>
+                            <div class="contact-pill-row">
+                                <div class="contact-pill">
+                                    Describe tu día típico de comida
+                                </div>
+                                <div class="contact-pill">
+                                    Incluye número aproximado de personas
+                                </div>
+                                <div class="contact-pill">
+                                    Menciona tus horarios críticos
+                                </div>
+                            </div>
+                            <br>
+                            <button class="btn-primary" type="button" data-open-contact>
+                                Abrir formulario ahora
+                                <span>✉︎</span>
+                            </button>
+                        </div>
+                    </div>
+                    <footer>
+                        <div>
+                            ©
+                            <span id="year"></span>
+                            Fast Food Express, S.A. de C.V. Todos los derechos reservados.
+                        </div>
+                        <div class="footer-links">
+                            <span>
+                                Hecho con sabor tapatío
+                            </span>
+                            <span>
+                                Servicio Express para empresas reales
+                            </span>
+                        </div>
+                    </footer>
+                </section>
+            </main>
+        </div>
+    </div>
+    <div class="modal-backdrop" id="contact-modal" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+            <button class="modal-close-icon" type="button" data-close-modal>
+                ✕
+            </button>
+            <h2 class="modal-title" id="contact-modal-title">
+                Cuéntanos qué necesitas para tu servicio Express
+            </h2>
+            <p class="modal-subtitle">
+                Este formulario está pensado para empresas, equipos y eventos internos que requieran comida rápida organizada en Zapopan y alrededores. Solo necesitamos algunos datos para preparar la propuesta correcta.
+            </p>
+            <div class="modal-extra">
+                ¿Tienes horarios muy definidos o varios turnos? Menciónalo y adaptaremos el formato de servicio para que cada persona tenga su momento de comida bien cubierto.
+            </div>
+            <form id="contact-form">
+                <div class="modal-form-grid">
+                    <div class="field-group">
+                        <label class="field-label" for="nombre">
+                            Nombre completo
+                        </label>
+                        <input class="field-input" id="nombre" name="nombre" type="text" autocomplete="name" required>
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label" for="correo">
+                            Correo electrónico
+                        </label>
+                        <input class="field-input" id="correo" name="correo" type="email" autocomplete="email" required>
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label" for="tipo-servicio">
+                            Tipo de servicio que buscas
+                        </label>
+                        <select class="field-select" id="tipo-servicio" name="tipo-servicio" required>
+                            <option value="">
+                                Selecciona una opción
+                            </option>
+                            <option value="comedor-corporativo">
+                                Comedor corporativo o estaciones para oficina
+                            </option>
+                            <option value="entrega-programada">
+                                Entrega programada para equipos internos
+                            </option>
+                            <option value="evento-puntual">
+                                Evento puntual o celebración especial
+                            </option>
+                            <option value="otro">
+                                Otro tipo de necesidad Express
+                            </option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label" for="mensaje">
+                            Cuéntanos sobre tu empresa y horarios de comida
+                        </label>
+                        <textarea class="field-textarea" id="mensaje" name="mensaje" required placeholder="Por ejemplo: número aproximado de personas por día, horarios de comida, si cuentan con comedor, salas multiuso o espacios de uso común."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <p class="modal-note">
+                        Al enviar este formulario nos autorizas a responderte por correo electrónico con información sobre menús, formatos de servicio y disponibilidad.
+                    </p>
+                    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                        <button class="modal-close-btn" type="button" data-close-modal>
+                            Cancelar
+                        </button>
+                        <button class="btn-primary" type="submit">
+                            Enviar mensaje
+                            <span>➜</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-backdrop" id="success-modal" aria-hidden="true">
+        <div class="modal-card success" role="dialog" aria-modal="true" aria-labelledby="success-modal-title">
+            <button class="modal-close-icon" type="button" data-close-modal>
+                ✕
+            </button>
+            <div class="modal-icon-success">
+                ✓
+            </div>
+            <h2 class="modal-title" id="success-modal-title">
+                ¡Mensaje enviado con éxito!
+            </h2>
+            <p class="modal-subtitle">
+                Gracias por confiar en Fast Food Express. Revisaremos la información que nos compartiste y te responderemos por correo electrónico con una propuesta adaptada a tu empresa en Zapopan.
+            </p>
+            <p class="modal-subtitle">
+                Mientras tanto puedes seguir explorando la página para conocer mejor nuestros servicios y la forma en que organizamos cada servicio Express.
+            </p>
+            <div style="margin-top:14px;display:flex;justify-content:center;">
+                <button class="btn-primary" type="button" data-close-modal>
+                    Volver al sitio
+                    <span>↺</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const navLinks = document.querySelectorAll("nav a[href^='#']");
+        const sections = document.querySelectorAll("main section[id]");
+        const contactModal = document.getElementById("contact-modal");
+        const successModal = document.getElementById("success-modal");
+        const openContactButtons = document.querySelectorAll("[data-open-contact]");
+        const closeModalButtons = document.querySelectorAll("[data-close-modal]");
+        const contactForm = document.getElementById("contact-form");
+        const yearSpan = document.getElementById("year");
+
+        function openModal(modal) {
+            if (!modal) {
+                return;
+            }
+            modal.classList.add("show");
+            modal.setAttribute("aria-hidden", "false");
+        }
+
+        function closeModal(modal) {
+            if (!modal) {
+                return;
+            }
+            modal.classList.remove("show");
+            modal.setAttribute("aria-hidden", "true");
+        }
+
+        openContactButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                openModal(contactModal);
+            });
+        });
+
+        closeModalButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const parentModal = button.closest(".modal-backdrop");
+                closeModal(parentModal);
+            });
+        });
+
+        [contactModal, successModal].forEach(function (modal) {
+            modal.addEventListener("click", function (event) {
+                if (event.target === modal) {
+                    closeModal(modal);
+                }
+            });
+        });
+
+        if (contactForm) {
+            contactForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                closeModal(contactModal);
+                contactForm.reset();
+                openModal(successModal);
+            });
+        }
+
+        navLinks.forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                const targetId = link.getAttribute("href").slice(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    event.preventDefault();
+                    targetSection.scrollIntoView({ behavior: "smooth" });
+                }
+            });
+        });
+
+        function updateActiveLink() {
+            let currentId = null;
+            sections.forEach(function (section) {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.35 && rect.bottom > window.innerHeight * 0.2) {
+                    currentId = section.id;
+                }
+            });
+            navLinks.forEach(function (link) {
+                const linkId = link.getAttribute("href").slice(1);
+                if (linkId === currentId) {
+                    link.classList.add("active-link");
+                } else {
+                    link.classList.remove("active-link");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", updateActiveLink);
+        updateActiveLink();
+
+        if (yearSpan) {
+            const now = new Date();
+            yearSpan.textContent = now.getFullYear();
+        }
+    </script>
+</body>
+</html>
